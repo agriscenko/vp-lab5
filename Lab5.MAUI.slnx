@@ -1,0 +1,6 @@
+<Solution>
+  <Project Path="Lab5.MAUI/Lab5.MAUI.csproj">
+    <Deploy Solution="Debug|*" />
+  </Project>
+  <Project Path="Lab5.MAUIData/Lab5.MAUIData.csproj" />
+</Solution>

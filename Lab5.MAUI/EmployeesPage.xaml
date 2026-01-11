@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             xmlns:viewModels="clr-namespace:Lab5.MAUI.ViewModels"
+             x:Class="Lab5.MAUI.EmployeesPage"
+             Title="EmployeesPage">
+
+    <ContentPage.BindingContext>
+        <viewModels:EmployeesPageViewModel />
+    </ContentPage.BindingContext>
+
+    <VerticalStackLayout>
+        <StackLayout IsVisible="{Binding IsReadOnly}">
+            <Label 
+                Text="{Binding Department.Code}"
+                VerticalOptions="Center" 
+                HorizontalOptions="Center" />
+
+            <Label 
+                Text="{Binding Department.Name}"
+                VerticalOptions="Center" 
+                HorizontalOptions="Center" />
+
+            <!--<Label 
+                Text="{Binding Department.FloorNumber}"
+                VerticalOptions="Center" 
+                HorizontalOptions="Center" />-->
+        </StackLayout>
+
+        <StackLayout IsVisible="{Binding IsEditEnabled}">
+            <Label 
+                Text="Code"
+                VerticalOptions="Center" 
+                HorizontalOptions="Center" />
+
+            <StackLayout Orientation="Horizontal">
+                <Entry Text="{Binding Department.Code, Mode=TwoWay}"/>
+                <BoxView BackgroundColor="Red" WidthRequest="10" HeightRequest="10" IsVisible="{Binding IsCodeInValid}" />
+            </StackLayout>
+
+            <Label 
+                Text="Name"
+                VerticalOptions="Center" 
+                HorizontalOptions="Center" />
+
+            <StackLayout Orientation="Horizontal">
+                <Entry Text="{Binding Department.Name, Mode=TwoWay}" />
+                <BoxView BackgroundColor="Red" WidthRequest="10" HeightRequest="10" IsVisible="{Binding IsNameInValid}" />
+            </StackLayout>
+
+            <!--<Label 
+                Text="FloorNumber"
+                VerticalOptions="Center" 
+                HorizontalOptions="Center" />
+
+            <StackLayout Orientation="Horizontal">
+                <Entry Text="{Binding Department.FloorNumber, Mode=TwoWay}" />
+                <BoxView BackgroundColor="Red" WidthRequest="10" HeightRequest="10" IsVisible="{Binding IsFloorNumnberInValid}" />
+            </StackLayout>-->
+
+            <StackLayout Orientation="Horizontal">
+                <Button Text="Ok" Command="{Binding UpdateConfirmCommand}"></Button>
+                <Button Text="Cancel" Command="{Binding UpdateCancelCommand}"></Button>
+            </StackLayout>
+        </StackLayout>
+
+        <Button Text="Edit" Command="{Binding EditDepartmentCommand}" IsVisible="{Binding IsReadOnly}" Margin="5"></Button>
+
+        <StackLayout BackgroundColor="red" IsVisible="{Binding IsDeleteConfirmationVisible}">
+            <Label Text="Do you want to delete employee?" />
+            <StackLayout Orientation="Horizontal">
+                <Button Text="Ok" Command="{Binding DeleteConfirmCommand}"></Button>
+                <Button Text="Cancel" Command="{Binding DeleteCancelCommand}"></Button>
+            </StackLayout>
+        </StackLayout>
+
+        <Button x:Name="DeleteBtn"
+                Text="Delete"
+                HorizontalOptions="Fill"
+                TextColor="White"
+                Command="{Binding DeleteCommand}"
+                IsEnabled="{Binding IsDeleteEnabled}"
+                Margin="5"
+                ></Button>
+        <CollectionView ItemsSource="{Binding Employees}"
+                  SelectionMode="Single"
+                  SelectedItem="{Binding SelectedEmployee, Mode=TwoWay}">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <StackLayout Orientation="Horizontal" Spacing="10" Margin="10">
+                        <Label Text="{Binding Subject}" />
+                        <Label Text="{Binding Value}" />
+                    </StackLayout>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+            <!--<CollectionView.Behaviors>
+                <toolkit:EventToCommandBehavior
+                    EventName="SelectionChanged"
+                    Command="{Binding SelectEmployeeCommand}" />
+            </CollectionView.Behaviors>-->
+        </CollectionView>
+    </VerticalStackLayout>
+</ContentPage>
