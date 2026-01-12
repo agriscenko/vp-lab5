@@ -67,6 +67,11 @@ public class MainPageViewModel : ViewModelBase
         {
             _selectedDepartment = value;
             OnPropertyChanged();
+
+            if (value != null)
+            {
+                ShowDetails();
+            }
         }
     }
 

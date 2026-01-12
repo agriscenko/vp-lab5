@@ -89,8 +89,8 @@
             <CollectionView.ItemTemplate>
                 <DataTemplate>
                     <StackLayout Orientation="Horizontal" Spacing="10" Margin="10">
-                        <Label Text="{Binding Subject}" />
-                        <Label Text="{Binding Value}" />
+                        <Label Text="{Binding FirstName}" />
+                        <Label Text="{Binding LastName}" />
                     </StackLayout>
                 </DataTemplate>
             </CollectionView.ItemTemplate>

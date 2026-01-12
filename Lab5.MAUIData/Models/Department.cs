@@ -13,6 +13,6 @@ public class Department
     [JsonPropertyName("name")]
     public required string Name { get; set; }
 
-    [JsonPropertyName("floornumber")]
-    public required int FloorNumber { get; set; }
+/*    [JsonPropertyName("floornumber")]
+    public required int FloorNumber { get; set; }*/
 }
