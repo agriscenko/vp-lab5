@@ -2,6 +2,6 @@
 
 public class DepartmentApiConstants
 {
-    public const string DepartmentsUrl = "api/Departments";
+    public const string DepartmentsUrl = "api/Department";
     public const string EmployeesUrl = "Employees";
 }
