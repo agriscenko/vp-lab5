@@ -15,7 +15,7 @@
         <ShellContent
             Title="Employees"
             ContentTemplate="{DataTemplate local:EmployeesPage}"
-            Route="EployeesPage" />
+            Route="EmployeesPage" />
     </TabBar>
 
 </Shell>
