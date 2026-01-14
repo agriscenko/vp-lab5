@@ -8,7 +8,7 @@ public interface IDataRepository
 
     Task<Employee[]> GetDepartmentEmployeesAsync(int departmentId);
 
-    Task DeleteEmployee(int departmentId, int employeeId);
+    Task DeleteEmployee(int employeeId);
 
     Task UpdateDepartmentAsync(Department department);
 }

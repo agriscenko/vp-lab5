@@ -12,16 +12,16 @@ public class ApiDataRepository : IDataRepository
         _departmentApiClient = apiClient;
     }
 
-    public async Task DeleteEmployee(int departmentId, int employeeId)
+    public async Task DeleteEmployee(int employeeId)
     {
         await _departmentApiClient
-            .DeleteItemAsync($"{DepartmentApiConstants.DepartmentsUrl}/{departmentId}/{DepartmentApiConstants.EmployeesUrl}/{employeeId}");
+            .DeleteItemAsync($"{DepartmentApiConstants.EmployeesUrl}/{employeeId}");
     }
 
     public async Task<Employee[]> GetDepartmentEmployeesAsync(int departmentId)
     {
         var result = await _departmentApiClient
-            .GetItemsAsync<Employee>($"{DepartmentApiConstants.DepartmentsUrl}/{departmentId}/{DepartmentApiConstants.EmployeesUrl}");
+            .GetItemsAsync<Employee>($"{DepartmentApiConstants.DepartmentsUrl}/{departmentId}/Employees");
 
         return result;
     }

@@ -228,7 +228,7 @@ public class EmployeesPageViewModel : ViewModelBase
 
     private async void ConfirmDeleteEmployee()
     {
-        await _dataRepository.DeleteEmployee(Department.Id, SelectedEmployee.Id);
+        await _dataRepository.DeleteEmployee(SelectedEmployee.Id);
         IsDeleteConfirmationVisible = false;
         IsDeleteEnabled = false;
 
