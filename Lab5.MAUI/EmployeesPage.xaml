@@ -4,166 +4,254 @@
              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              xmlns:viewModels="clr-namespace:Lab5.MAUI.ViewModels"
              x:Class="Lab5.MAUI.EmployeesPage"
-             Title="EmployeesPage">
+             Title="Employees">
 
     <ContentPage.BindingContext>
         <viewModels:EmployeesPageViewModel />
     </ContentPage.BindingContext>
 
-    <VerticalStackLayout>
-        <StackLayout IsVisible="{Binding IsReadOnly}">
-            <Label 
-                Text="{Binding Department.Code}"
-                VerticalOptions="Center" 
-                HorizontalOptions="Center" />
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="15">
+            <StackLayout IsVisible="{Binding IsReadOnly}" Spacing="10" Padding="10">
+                <Label 
+                    Text="{Binding Department.Code}"
+                    VerticalOptions="Center" 
+                    HorizontalOptions="Center"
+                    Margin="0,5" />
 
-            <Label 
-                Text="{Binding Department.Name}"
-                VerticalOptions="Center" 
-                HorizontalOptions="Center" />
+                <Label 
+                    Text="{Binding Department.Name}"
+                    VerticalOptions="Center" 
+                    HorizontalOptions="Center"
+                    Margin="0,5" />
 
-            <Label 
-                Text="{Binding Department.FloorNumber}"
-                VerticalOptions="Center" 
-                HorizontalOptions="Center" />
+                <Label 
+                    Text="{Binding Department.FloorNumber}"
+                    VerticalOptions="Center" 
+                    HorizontalOptions="Center"
+                    Margin="0,5" />
 
-            <Label 
-                Text="{Binding Department.PhoneNumber}"
-                VerticalOptions="Center" 
-                HorizontalOptions="Center" />
+                <Label 
+                    Text="{Binding Department.PhoneNumber}"
+                    VerticalOptions="Center" 
+                    HorizontalOptions="Center"
+                    Margin="0,5" />
 
-            <Label 
-                Text="{Binding Department.Email}"
-                VerticalOptions="Center" 
-                HorizontalOptions="Center" />
-        </StackLayout>
-
-        <StackLayout IsVisible="{Binding IsEditEnabled}">
-            <Label 
-                Text="Code"
-                VerticalOptions="Center" 
-                HorizontalOptions="Center" />
-
-            <StackLayout Orientation="Horizontal">
-                <Entry Text="{Binding Department.Code, Mode=TwoWay}">
-                    <Entry.Behaviors>
-                        <toolkit:EventToCommandBehavior
-                            EventName="TextChanged"
-                            Command="{Binding ValidateCommand}" />
-                    </Entry.Behaviors>
-                </Entry>
-                <BoxView BackgroundColor="Red" WidthRequest="10" HeightRequest="10" IsVisible="{Binding IsCodeInvalid}" />
+                <Label 
+                    Text="{Binding Department.Email}"
+                    VerticalOptions="Center" 
+                    HorizontalOptions="Center"
+                    Margin="0,5" />
             </StackLayout>
 
-            <Label 
-                Text="Name"
-                VerticalOptions="Center" 
-                HorizontalOptions="Center" />
+            <StackLayout IsVisible="{Binding IsEditEnabled}" Spacing="15" Padding="10">
+                <Label 
+                    Text="Code"
+                    VerticalOptions="Center" 
+                    HorizontalOptions="Start"
+                    Margin="0,0,0,5" />
 
-            <StackLayout Orientation="Horizontal">
-                <Entry Text="{Binding Department.Name, Mode=TwoWay}">
-                    <Entry.Behaviors>
-                        <toolkit:EventToCommandBehavior
-                            EventName="TextChanged"
-                            Command="{Binding ValidateCommand}" />
-                    </Entry.Behaviors>
-                </Entry>
-                <BoxView BackgroundColor="Red" WidthRequest="10" HeightRequest="10" IsVisible="{Binding IsNameInvalid}" />
+                <StackLayout Orientation="Horizontal" Spacing="10">
+                    <Entry Text="{Binding Department.Code, Mode=TwoWay}"
+                           HorizontalOptions="FillAndExpand">
+                        <Entry.Behaviors>
+                            <toolkit:EventToCommandBehavior
+                                EventName="TextChanged"
+                                Command="{Binding ValidateCommand}" />
+                        </Entry.Behaviors>
+                    </Entry>
+                    <BoxView BackgroundColor="Red" 
+                             WidthRequest="10" 
+                             HeightRequest="10" 
+                             VerticalOptions="Center"
+                             IsVisible="{Binding IsCodeInvalid}" />
+                </StackLayout>
+
+                <Label 
+                    Text="Name"
+                    VerticalOptions="Center" 
+                    HorizontalOptions="Start"
+                    Margin="0,10,0,5" />
+
+                <StackLayout Orientation="Horizontal" Spacing="10">
+                    <Entry Text="{Binding Department.Name, Mode=TwoWay}"
+                           HorizontalOptions="FillAndExpand">
+                        <Entry.Behaviors>
+                            <toolkit:EventToCommandBehavior
+                                EventName="TextChanged"
+                                Command="{Binding ValidateCommand}" />
+                        </Entry.Behaviors>
+                    </Entry>
+                    <BoxView BackgroundColor="Red" 
+                             WidthRequest="10" 
+                             HeightRequest="10" 
+                             VerticalOptions="Center"
+                             IsVisible="{Binding IsNameInvalid}" />
+                </StackLayout>
+
+                <Label
+                    Text="Floor number"
+                    VerticalOptions="Center" 
+                    HorizontalOptions="Start"
+                    Margin="0,10,0,5" />
+
+                <StackLayout Orientation="Horizontal" Spacing="10">
+                    <Entry Text="{Binding Department.FloorNumber, Mode=TwoWay}"
+                           Keyboard="Numeric"
+                           HorizontalOptions="FillAndExpand">
+                        <Entry.Behaviors>
+                            <toolkit:EventToCommandBehavior
+                                EventName="TextChanged"
+                                Command="{Binding ValidateCommand}" />
+                        </Entry.Behaviors>
+                    </Entry>
+                    <BoxView BackgroundColor="Red" 
+                             WidthRequest="10" 
+                             HeightRequest="10" 
+                             VerticalOptions="Center"
+                             IsVisible="{Binding IsFloorNumberInvalid}" />
+                </StackLayout>
+
+                <Label
+                    Text="Phone number"
+                    VerticalOptions="Center" 
+                    HorizontalOptions="Start"
+                    Margin="0,10,0,5" />
+
+                <StackLayout Orientation="Horizontal" Spacing="10">
+                    <Entry Text="{Binding Department.PhoneNumber, Mode=TwoWay}"
+                           Keyboard="Telephone"
+                           HorizontalOptions="FillAndExpand">
+                        <Entry.Behaviors>
+                            <toolkit:EventToCommandBehavior
+                                EventName="TextChanged"
+                                Command="{Binding ValidateCommand}" />
+                        </Entry.Behaviors>
+                    </Entry>
+                    <BoxView BackgroundColor="Red" 
+                             WidthRequest="10" 
+                             HeightRequest="10" 
+                             VerticalOptions="Center"
+                             IsVisible="{Binding IsPhoneNumberInvalid}" />
+                </StackLayout>
+
+                <Label
+                    Text="Email"
+                    VerticalOptions="Center" 
+                    HorizontalOptions="Start"
+                    Margin="0,10,0,5" />
+
+                <StackLayout Orientation="Horizontal" Spacing="10">
+                    <Entry Text="{Binding Department.Email, Mode=TwoWay}"
+                           Keyboard="Email"
+                           HorizontalOptions="FillAndExpand">
+                        <Entry.Behaviors>
+                            <toolkit:EventToCommandBehavior
+                                EventName="TextChanged"
+                                Command="{Binding ValidateCommand}" />
+                        </Entry.Behaviors>
+                    </Entry>
+                    <BoxView BackgroundColor="Red" 
+                             WidthRequest="10" 
+                             HeightRequest="10" 
+                             VerticalOptions="Center"
+                             IsVisible="{Binding IsEmailInvalid}" />
+                </StackLayout>
+
+                <StackLayout Orientation="Horizontal" 
+                             Spacing="15" 
+                             Margin="0,20,0,0"
+                             HorizontalOptions="Center">
+                    <Button Text="Ok" 
+                            Command="{Binding UpdateConfirmCommand}"
+                            Padding="20,10"
+                            Margin="5" />
+                    <Button Text="Cancel" 
+                            Command="{Binding UpdateCancelCommand}"
+                            Padding="20,10"
+                            Margin="5" />
+                </StackLayout>
             </StackLayout>
 
-            <Label
-                Text="Floor number"
-                VerticalOptions="Center" 
-                HorizontalOptions="Center" />
+            <Button Text="Edit" 
+                    Command="{Binding EditDepartmentCommand}" 
+                    IsVisible="{Binding IsReadOnly}" 
+                    Margin="0,10"
+                    Padding="20,10"
+                    HorizontalOptions="Fill" />
 
-            <StackLayout Orientation="Horizontal">
-                <Entry Text="{Binding Department.FloorNumber, Mode=TwoWay}"
-                       Keyboard="Numeric">
-                    <Entry.Behaviors>
-                        <toolkit:EventToCommandBehavior
-                            EventName="TextChanged"
-                            Command="{Binding ValidateCommand}" />
-                    </Entry.Behaviors>
-                </Entry>
-                <BoxView BackgroundColor="Red" WidthRequest="10" HeightRequest="10" IsVisible="{Binding IsFloorNumberInvalid}" />
+            <StackLayout BackgroundColor="Red" 
+                         IsVisible="{Binding IsDeleteConfirmationVisible}"
+                         Padding="15"
+                         Margin="0,10"
+                         Spacing="10">
+                <Label Text="Do you want to delete employee?" 
+                       TextColor="White"
+                       HorizontalOptions="Center"
+                       Margin="0,5" />
+                <StackLayout Orientation="Horizontal" 
+                             Spacing="15"
+                             HorizontalOptions="Center"
+                             Margin="0,5">
+                    <Button Text="Ok" 
+                            Command="{Binding DeleteConfirmCommand}"
+                            Padding="20,10"
+                            Margin="5" />
+                    <Button Text="Cancel" 
+                            Command="{Binding DeleteCancelCommand}"
+                            Padding="20,10"
+                            Margin="5" />
+                </StackLayout>
             </StackLayout>
 
-            <Label
-                Text="Phone number"
-                VerticalOptions="Center" 
-                HorizontalOptions="Center" />
+            <Button x:Name="DeleteBtn"
+                    Text="Delete"
+                    HorizontalOptions="Fill"
+                    TextColor="White"
+                    Command="{Binding DeleteCommand}"
+                    IsEnabled="{Binding IsDeleteEnabled}"
+                    Margin="0,10"
+                    Padding="20,10" />
 
-            <StackLayout Orientation="Horizontal">
-                <Entry Text="{Binding Department.PhoneNumber, Mode=TwoWay}"
-                       Keyboard="Telephone">
-                    <Entry.Behaviors>
-                        <toolkit:EventToCommandBehavior
-                            EventName="TextChanged"
-                            Command="{Binding ValidateCommand}" />
-                    </Entry.Behaviors>
-                </Entry>
-                <BoxView BackgroundColor="Red" WidthRequest="10" HeightRequest="10" IsVisible="{Binding IsPhoneNumberInvalid}" />
-            </StackLayout>
+            <Label Text="Employees" 
+                   FontSize="18"
+                   FontAttributes="Bold"
+                   Margin="0,15,0,10"
+                   HorizontalOptions="Start" />
 
-            <Label
-                Text="Email"
-                VerticalOptions="Center" 
-                HorizontalOptions="Center" />
-
-            <StackLayout Orientation="Horizontal">
-                <Entry Text="{Binding Department.Email, Mode=TwoWay}"
-                       Keyboard="Email">
-                    <Entry.Behaviors>
-                        <toolkit:EventToCommandBehavior
-                            EventName="TextChanged"
-                            Command="{Binding ValidateCommand}" />
-                    </Entry.Behaviors>
-                </Entry>
-                <BoxView BackgroundColor="Red" WidthRequest="10" HeightRequest="10" IsVisible="{Binding IsEmailInvalid}" />
-            </StackLayout>
-
-            <StackLayout Orientation="Horizontal">
-                <Button Text="Ok" Command="{Binding UpdateConfirmCommand}"></Button>
-                <Button Text="Cancel" Command="{Binding UpdateCancelCommand}"></Button>
-            </StackLayout>
-        </StackLayout>
-
-        <Button Text="Edit" Command="{Binding EditDepartmentCommand}" IsVisible="{Binding IsReadOnly}" Margin="5"></Button>
-
-        <StackLayout BackgroundColor="red" IsVisible="{Binding IsDeleteConfirmationVisible}">
-            <Label Text="Do you want to delete employee?" />
-            <StackLayout Orientation="Horizontal">
-                <Button Text="Ok" Command="{Binding DeleteConfirmCommand}"></Button>
-                <Button Text="Cancel" Command="{Binding DeleteCancelCommand}"></Button>
-            </StackLayout>
-        </StackLayout>
-
-        <Button x:Name="DeleteBtn"
-                Text="Delete"
-                HorizontalOptions="Fill"
-                TextColor="White"
-                Command="{Binding DeleteCommand}"
-                IsEnabled="{Binding IsDeleteEnabled}"
-                Margin="5"
-                ></Button>
-        <CollectionView ItemsSource="{Binding Employees}"
-                  SelectionMode="Single"
-                  SelectedItem="{Binding SelectedEmployee, Mode=TwoWay}">
-            <CollectionView.ItemTemplate>
-                <DataTemplate>
-                    <StackLayout Orientation="Horizontal" Spacing="10" Margin="10">
-                        <Label Text="{Binding FirstName}" />
-                        <Label Text="{Binding LastName}" />
-                        <Label Text="{Binding PhoneNumber}" />
-                        <Label Text="{Binding Email}" />
-                    </StackLayout>
-                </DataTemplate>
-            </CollectionView.ItemTemplate>
-            <!--<CollectionView.Behaviors>
-                <toolkit:EventToCommandBehavior
-                    EventName="SelectionChanged"
-                    Command="{Binding SelectEmployeeCommand}" />
-            </CollectionView.Behaviors>-->
-        </CollectionView>
-    </VerticalStackLayout>
+            <CollectionView ItemsSource="{Binding Employees}"
+                            SelectionMode="Single"
+                            SelectedItem="{Binding SelectedEmployee, Mode=TwoWay}"
+                            Margin="0,5">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout Orientation="Horizontal" 
+                                     Spacing="15" 
+                                     Padding="15,10"
+                                     Margin="0,5">
+                            <Label Text="{Binding FirstName}" 
+                                   VerticalOptions="Center"
+                                   FontSize="14" />
+                            <Label Text="{Binding LastName}" 
+                                   VerticalOptions="Center"
+                                   FontSize="14" />
+                            <Label Text="{Binding PhoneNumber}" 
+                                   VerticalOptions="Center"
+                                   FontSize="12"
+                                   TextColor="Gray" />
+                            <Label Text="{Binding Email}" 
+                                   VerticalOptions="Center"
+                                   FontSize="12"
+                                   TextColor="Gray" />
+                        </StackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+                <!--<CollectionView.Behaviors>
+                    <toolkit:EventToCommandBehavior
+                        EventName="SelectionChanged"
+                        Command="{Binding SelectEmployeeCommand}" />
+                </CollectionView.Behaviors>-->
+            </CollectionView>
+        </VerticalStackLayout>
+    </ScrollView>
 </ContentPage>
