@@ -1,4 +1,4 @@
-﻿using System.Windows.Input;
+using System.Windows.Input;
 using CommunityToolkit.Mvvm.Input;
 using Lab5.MAUIData.Interfaces;
 using Lab5.MAUIData.Models;
@@ -179,47 +179,75 @@ public class EmployeesPageViewModel : ViewModelBase
         }
     }
 
-    private bool _isCodeInValid;
-    public bool IsCodeInValid
+    private bool _isCodeInvalid;
+    public bool IsCodeInvalid
     {
         get
         {
-            return _isCodeInValid;
+            return _isCodeInvalid;
         }
         set
         {
-            _isCodeInValid = value;
+            _isCodeInvalid = value;
             OnPropertyChanged();
         }
     }
 
-    private bool _isNameInValid;
-    public bool IsNameInValid
+    private bool _isNameInvalid;
+    public bool IsNameInvalid
     {
         get
         {
-            return _isNameInValid;
+            return _isNameInvalid;
         }
         set
         {
-            _isNameInValid = value;
+            _isNameInvalid = value;
             OnPropertyChanged();
         }
     }
 
-    //private bool _isFloorNumberInValid;
-    //public bool IsFloorNumberInValid
-    //{
-    //    get
-    //    {
-    //        return _isFloorNumberInValid;
-    //    }
-    //    set
-    //    {
-    //        _isFloorNumberInValid = value;
-    //        OnPropertyChanged();
-    //    }
-    //}
+    private bool _isFloorNumberInvalid;
+    public bool IsFloorNumberInvalid
+    {
+        get
+        {
+            return _isFloorNumberInvalid;
+        }
+        set
+        {
+            _isFloorNumberInvalid = value;
+            OnPropertyChanged();
+        }
+    }
+
+    private bool _isPhoneNumberInvalid;
+    public bool IsPhoneNumberInvalid
+    {
+        get
+        {
+            return _isPhoneNumberInvalid;
+        }
+        set
+        {
+            _isPhoneNumberInvalid = value;
+            OnPropertyChanged();
+        }
+    }
+
+    private bool _isEmailInvalid;
+    public bool IsEmailInvalid
+    {
+        get
+        {
+            return _isEmailInvalid;
+        }
+        set
+        {
+            _isEmailInvalid = value;
+            OnPropertyChanged();
+        }
+    }
 
     private void CancelDeleteEmployee()
     {
@@ -258,11 +286,13 @@ public class EmployeesPageViewModel : ViewModelBase
 
     private bool IsDepartmentDataValid()
     {
-        IsCodeInValid = string.IsNullOrEmpty(Department.Code);
-        IsNameInValid = string.IsNullOrEmpty(Department.Name);
-     //   IsFloorNumberInValid = !Department.FloorNumber.HasValue;
+        IsCodeInvalid = string.IsNullOrEmpty(Department.Code) || Department.Code.Length != 2;
+        IsNameInvalid = string.IsNullOrEmpty(Department.Name);
+        IsFloorNumberInvalid = Department.FloorNumber < 1 || Department.FloorNumber > 5;
+        IsPhoneNumberInvalid = string.IsNullOrEmpty(Department.PhoneNumber);
+        IsEmailInvalid = string.IsNullOrEmpty(Department.Email);
 
-        if (IsCodeInValid || IsNameInValid)// || IsFloorNumberInValid)
+        if (IsCodeInvalid || IsNameInvalid || IsFloorNumberInvalid || IsPhoneNumberInvalid || IsEmailInvalid)
         {
             return false;
         }

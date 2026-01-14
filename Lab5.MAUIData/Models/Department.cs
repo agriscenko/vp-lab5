@@ -7,12 +7,18 @@ public class Department
     [JsonPropertyName("id")]
 	public int Id { get; set; }
 
-    [JsonPropertyName("code")]
-	public required string Code { get; set; }
-
     [JsonPropertyName("name")]
     public required string Name { get; set; }
 
-/*    [JsonPropertyName("floornumber")]
-    public required int FloorNumber { get; set; }*/
+    [JsonPropertyName("code")]
+    public required string Code { get; set; }
+
+    [JsonPropertyName("floorNumber")]
+    public required int FloorNumber { get; set; }
+
+    [JsonPropertyName("phoneNumber")]
+    public required string PhoneNumber { get; set; }
+
+    [JsonPropertyName("email")]
+    public required string Email { get; set; }
 }
