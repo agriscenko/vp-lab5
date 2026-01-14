@@ -1,4 +1,4 @@
-﻿using Lab5.MAUIData.Interfaces;
+using Lab5.MAUIData.Interfaces;
 using System.Text.Json;
 
 namespace Lab5.MAUIData.Services;
@@ -24,7 +24,12 @@ public class DepartmentApiClient : IDepartmentApiClient
 
         var json = await response.Content.ReadAsStringAsync();
 
-        var items = JsonSerializer.Deserialize<T[]>(json);
+        var options = new JsonSerializerOptions
+        {
+            PropertyNameCaseInsensitive = true
+        };
+
+        var items = JsonSerializer.Deserialize<T[]>(json, options);
 
         return items;
     }
