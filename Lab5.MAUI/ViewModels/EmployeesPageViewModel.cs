@@ -48,6 +48,7 @@ public class EmployeesPageViewModel : ViewModelBase
             department = value;
 
             IsDeleteEnabled = false;
+            Employees = Array.Empty<Employee>();
 
             OnPropertyChanged();
 
